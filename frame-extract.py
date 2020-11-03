@@ -5,7 +5,7 @@ import os
 
 def extract_frames(video):
     cap = cv2.VideoCapture(video)
-    folder_name = video.split('/')[-1].split('.')[0] # create a folder with same name as video file
+    folder_name = '/pfs/out/{}'.format(video.split('/')[-1].split('.')[0]) # create a folder with same name as video file
     try:
         if not os.path.exists(folder_name):
             os.makedirs(folder_name)
@@ -18,7 +18,7 @@ def extract_frames(video):
     success, frame = cap.read()
     while success:
     # Capture frame-by-frame
-        name = '/pfs/out/{}/frame{}{}'.format(folder_name, str(currentFrame), '.jpg')
+        name = '{}/frame{}{}'.format(folder_name, str(currentFrame), '.jpg')
         print ('Creating...' + name)
         cv2.imwrite(name, frame)
         success, frame = cap.read()
