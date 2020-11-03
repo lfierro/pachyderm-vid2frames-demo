@@ -9,7 +9,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     && apt-get install -qqy make git pkg-config libswscale-dev python3-dev \
     	python3-numpy python3-tk libtbb2 libtbb-dev libjpeg-dev libpng-dev \
     	libtiff-dev bpython python3-pip libfreetype6-dev wget unzip cmake \
-    	sudo \
+      ffmpeg libsm6 libxext6 sudo \
     && apt-get clean \
     && rm -rf /var/lib/apt
 
