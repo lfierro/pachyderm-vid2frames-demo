@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:18.04
 
 # Install opencv and matplotlib.
 RUN export DEBIAN_FRONTEND=noninteractive; \
@@ -13,7 +13,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
     && apt-get clean \
     && rm -rf /var/lib/apt
 
-RUN python3 --version && pip3 --version && sudo pip3 install matplotlib opencv-python
+RUN python3 --version && pip3 --version && sudo pip3 install matplotlib scikit-build opencv-python
 
 # Add our own code.
 ADD frame-extract.py /frame-extract.py

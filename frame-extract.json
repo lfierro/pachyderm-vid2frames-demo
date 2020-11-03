@@ -1,16 +1,16 @@
 {
   "pipeline": {
-    "name": "edges"
+    "name": "frames"
   },
   "description": "A pipeline that performs image edge detection by using the OpenCV library.",
   "input": {
     "pfs": {
       "glob": "/*",
-      "repo": "images"
+      "repo": "videos"
     }
   },
   "transform": {
-    "cmd": [ "python3", "/edges.py" ],
+    "cmd": [ "python3", "/frame-extract.py" ],
     "image": "lfierro/pachyderm-vid2frames-demo"
   }
 }
