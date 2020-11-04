@@ -4,10 +4,10 @@ This tutorial will show you how to create and run a Pachyderm pipeline that extr
 ## Prerequisites
 The *frames* pipeline (see *frame-extract.json* for pipeline naming) was created and tested for a local installation of Pachyderm, and thus, it is recommended to use a local installation to run it.
 
-To do so, follow instructions for a [Local Installation of Pachyderm](https://docs.pachyderm.com/latest/getting_started/local_installation/)
+To do so, follow the instructions for a [Local Installation of Pachyderm](https://docs.pachyderm.com/latest/getting_started/local_installation/).
 
 ### Versions used
-This tutorial uses Minikube v1.14.2 and Pachyderm v1.11.5.
+This tutorial uses **Minikube v1.14.2** and **Pachyderm v1.11.5**.
 
 ## Gather Videos of Interest
 Collect the videos you would like to convert to frames.
@@ -16,7 +16,7 @@ For the purposes of testing, public domain archives are good sources for videos.
 
 **Recommendations**:
 1. Place all of the videos in a single folder for easy access
-2. Name the video files in a directory-friendly way - all of the frames of a video are extracted and saved to a folder named after the video filename
+2. Name the video files in a directory-friendly way - all of the frames of a video are extracted and saved to a folder named after the filename
   - For example: use the filename "sample_newsclip_2020_11_03.mp3" rather than "Sample Newsclip 2020_11_03.mp3"
 
 # Start Up Pachyderm (if not started already)
@@ -40,7 +40,7 @@ Confirm the creation of the repo.
 pachctl list repo
 ```
 
-Be sure to name the *videos* repo exactly as such because the *frames* pipeline expects it as an input.
+Be sure to name the *videos* repo exactly as such because the pipeline expects it as an input.
 
 # Add video files to the videos repo
 With all of your videos stored on a local folder, you can add all of them to the video repo by running:
@@ -106,3 +106,8 @@ Once everything is completed, and you'd like to shut down Pachyderm. Simply run:
 ```
 minikube delete
 ```
+
+# Appendix
+- For more on the pipeline specification, see [Pipeline Specification docs](https://docs.pachyderm.com/latest/reference/pipeline_spec/).
+- The *frames* pipeline was tested using videos in MKV, mp4, and MOV format.
+- The *frames* extracts frames based on a video's encoded frame rate, and each frame is saved as a JPEG. 
