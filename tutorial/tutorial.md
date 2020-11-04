@@ -89,7 +89,8 @@ pachctl get file frames@master:/SINGLE_VIDEO_DIRECTORY/frame0.jpg | open -f -a /
 ```
 
 macOS Catalina:
-```pachctl get file frames@master:/SINGLE_VIDEO_DIRECTORY/frame0.jpg | open -f -a /System/Applications/Preview.app
+```
+pachctl get file frames@master:/SINGLE_VIDEO_DIRECTORY/frame0.jpg | open -f -a /System/Applications/Preview.app
 ```
 
 Linux 64-bit:
