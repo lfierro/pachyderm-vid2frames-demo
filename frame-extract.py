@@ -18,7 +18,7 @@ def extract_frames(video):
     print('Total frames to be written: {}'.format(video_frame_count))
     success, frame = cap.read()
     if not success:
-        print('Video at {} could not be read. Please check file format.'.format(video))
+        print('Video at {} could not be read. Please check file format.'.format(video.split('/')[-1]))
     while success:
     # Capture each frame and save with numbered file name
         name = '{}/frame{}{}'.format(folder_name, str(currentFrame), '.jpg')
