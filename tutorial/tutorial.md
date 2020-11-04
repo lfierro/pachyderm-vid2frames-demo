@@ -54,14 +54,14 @@ pachctl list file videos@master
 ```
 
 # Create frames pipeline
-Now that you have videos to be processed checked into the *videos* repo, you can create the *frames* pipeline.
+Now that you have the videos to be processed checked into the *videos* repo, you can create the *frames* pipeline.
 ```
 pachctl create pipeline -f https://raw.githubusercontent.com/lfierro/pachyderm-vid2frames-demo/master/frame-extract.json
 ```
 
 This command uses the pipeline specification *frame-extract.json* defined in this GitHub repository.
 
-And, upon running this command, a job that executes the pipeline for the videos in the *videos* repo will begin. You can see its status by running:
+And, upon running the command, a job that executes the pipeline for the videos in the *videos* repo will begin. You can see its status by running:
 ```
 pachctl list job
 ```
@@ -76,7 +76,7 @@ You can check all of the files committed to the *frames* repo by first seeing al
 pachctl list file frames@master
 ```
 
-Then, you can list all of the frames in a directory. There will be many, so you may only want to see a preview of that list by piping the list command to head.
+Then, you can list all of the frames in a directory. There will be many, so you may only want to see a preview of that list by piping the command to head.
 ```
 pachctl list file frames@master:/SINGLE_VIDEO_DIRECTORY | head
 ```
@@ -101,7 +101,7 @@ pachctl get file frames@master:/SINGLE_VIDEO_DIRECTORY/frame0.jpg | display
 # Saving/exporting frames locally
 ?is this possible?
 
-# Wrapping Up
+# Wrapping up
 Once everything is completed, and you'd like to shut down Pachyderm. Simply run:
 ```
 minikube delete
@@ -110,4 +110,4 @@ minikube delete
 # Appendix
 - For more on the pipeline specification, see [Pipeline Specification docs](https://docs.pachyderm.com/latest/reference/pipeline_spec/).
 - The *frames* pipeline was tested using videos in MKV, mp4, and MOV format.
-- The *frames* extracts frames based on a video's encoded frame rate, and each frame is saved as a JPEG. 
+- The *frames* extracts frames based on a video's encoded frame rate, and each frame is saved as a JPEG.
