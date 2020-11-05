@@ -2,7 +2,7 @@
 This tutorial will show you how to create and run a Pachyderm pipeline that extracts and saves all frames from a video or collection of videos.
 
 ## Prerequisites
-The *frames* pipeline (see *frame-extract.json* for pipeline naming) was created and tested for a local installation of Pachyderm, and thus, it is recommended to use a local installation to run it.
+The **frames** pipeline (see *frame-extract.json* for pipeline naming) was created and tested for a local installation of Pachyderm, and thus, it is recommended to use a local installation to run it.
 
 To do so, follow the instructions for a [Local Installation of Pachyderm](https://docs.pachyderm.com/latest/getting_started/local_installation/).
 
@@ -66,7 +66,7 @@ And, upon running the command, a job that executes the pipeline for the videos i
 pachctl list job
 ```
 
-Note: It may take a few minutes for the job to appear.
+> Note: It may take a few minutes for the job to appear.
 
 # Check pipeline output
 Once the job is completed, a new repo should be created called *frames*. In it, should be a directory for each video.
