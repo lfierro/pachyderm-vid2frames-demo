@@ -5,7 +5,7 @@ import os
 
 def extract_frames(video):
     cap = cv2.VideoCapture(video)
-    # create a folder with same name as video file
+    # create a folder in /pfs/out (special Pachyderm directory) with same name as video file
     folder_name = '/pfs/out/{}'.format(video.split('/')[-1].split('.')[0])
     try:
         if not os.path.exists(folder_name):
@@ -32,7 +32,7 @@ def extract_frames(video):
     cv2.destroyAllWindows()
 
 if __name__ == "__main__":
-    # walk /pfs/videos and call extract_frames on every file found
+    # walk /pfs/videos, the videos repo, and call extract_frames on every file found
     for dirpath, dirs, files in os.walk("/pfs/videos"):
         for file in files:
             extract_frames(os.path.join(dirpath, file))

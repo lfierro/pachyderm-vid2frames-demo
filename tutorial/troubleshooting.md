@@ -1,5 +1,5 @@
 # Troubleshooting
-This document contains issues that may be encountered while running the *frames* pipeline.
+This document contains issues that may be encountered while running the **frames** pipeline.
 
 # TLS handshake timeout
 Sometimes, when running a pachctl command, you may receive a "TLS handshake timeout" response.
@@ -37,4 +37,4 @@ Then:
 pachctl logs --job=JOB_ID
 ```
 
-If you see the printed message, 'Video VIDEO_FILENAME could not be read. Please check file format.' then that video wasn't properly read by OpenCV. 
+If you see the printed message, 'Video VIDEO_FILENAME could not be read. Please check file format.' then that video wasn't properly read by OpenCV.

@@ -2,12 +2,12 @@
 This tutorial will show you how to create and run a Pachyderm pipeline that extracts and saves all frames from a video or collection of videos.
 
 ## Prerequisites
-The **frames** pipeline (see *frame-extract.json* for pipeline naming) was created and tested for a local installation of Pachyderm, and thus, it is recommended to use a local installation to run it.
+The **frames** pipeline (see `frame-extract.json` for pipeline naming) was created and tested for a local installation of Pachyderm, and thus, it is recommended to use a local installation to run it.
 
 To do so, follow the instructions for a [Local Installation of Pachyderm](https://docs.pachyderm.com/latest/getting_started/local_installation/).
 
 ### Versions used
-This tutorial uses **Minikube v1.14.2** and **Pachyderm v1.11.5**.
+A local installation of Pachyderm runs on minikube, which is a local Kubernetes cluster. This tutorial uses **minikube v1.14.2** and **Pachyderm v1.11.5**.
 
 ## Gather Videos of Interest
 Collect the videos you would like to convert to frames.
@@ -17,7 +17,7 @@ For the purposes of testing, public domain archives are good sources for videos.
 **Recommendations**:
 1. Place all of the videos in a single folder for easy access
 2. Name the video files in a directory-friendly way - all of the frames of a video are extracted and saved to a folder named after the filename
-  - For example: use the filename "sample_newsclip_2020_11_03.mp3" rather than "Sample Newsclip 2020_11_03.mp3"
+  - For example: use the filename `sample_newsclip_2020_11_03.mp3` rather than `Sample Newsclip 2020_11_03.mp3`
 
 # Start Up Pachyderm (if not started already)
 Start Minikube:
@@ -30,7 +30,7 @@ pachctl deploy local
 ```
 
 # Create videos repo
-Once Pachyderm is running (may take a few minutes), create the *videos* repo, which will contain all of the videos you'd like to process.
+Once Pachyderm is running (may take a few minutes), create the **videos** repo, which will contain all of the videos you'd like to process.
 ```
 pachctl create repo videos
 ```
@@ -40,10 +40,10 @@ Confirm the creation of the repo.
 pachctl list repo
 ```
 
-Be sure to name the *videos* repo exactly as such because the pipeline expects it as an input.
+> Be sure to name the **videos** repo exactly as such because the pipeline expects it as an input.
 
 # Add video files to the videos repo
-With all of your videos stored on a local folder, you can add all of them to the video repo by running:
+With all of your videos stored on a local folder, you can add all of them to the **videos** repo by running:
 ```
 pachctl put file -r videos@master:/ -f PATH_TO_VIDEOS_LOCAL_FOLDER
 ```
@@ -54,14 +54,14 @@ pachctl list file videos@master
 ```
 
 # Create frames pipeline
-Now that you have the videos to be processed checked into the *videos* repo, you can create the *frames* pipeline.
+Now that you have the videos to be processed checked into the **videos** repo, you can create the **frames** pipeline.
 ```
 pachctl create pipeline -f https://raw.githubusercontent.com/lfierro/pachyderm-vid2frames-demo/master/frame-extract.json
 ```
 
-This command uses the pipeline specification *frame-extract.json* defined in this GitHub repository.
+This command uses the pipeline specification `frame-extract.json` defined in this GitHub repository.
 
-And, upon running the command, a job that executes the pipeline for the videos in the *videos* repo will begin. You can see its status by running:
+And, upon running the command, a job that executes the pipeline for the videos in the **videos** repo will begin. You can see its status by running:
 ```
 pachctl list job
 ```
@@ -69,9 +69,9 @@ pachctl list job
 > Note: It may take a few minutes for the job to appear.
 
 # Check pipeline output
-Once the job is completed, a new repo should be created called *frames*. In it, should be a directory for each video.
+Once the job is completed, a new repo should be created called **frames** (which is named in `frame-extract.json`). In it, should be a directory for each video.
 
-You can check all of the files committed to the *frames* repo by first seeing all of the directories created.
+You can check all of the files committed to the **frames** repo by first seeing all of the directories created.
 ```
 pachctl list file frames@master
 ```
@@ -99,7 +99,10 @@ pachctl get file frames@master:/SINGLE_VIDEO_DIRECTORY/frame0.jpg | display
 ```
 
 # Saving/exporting frames locally
-?is this possible?
+If you would like to download the extracted frames, run:
+```
+pachctl get file frames@master:/ -r >
+```
 
 # Wrapping up
 Once everything is completed, and you'd like to shut down Pachyderm. Simply run:
@@ -109,5 +112,5 @@ minikube delete
 
 # Appendix
 - For more on the pipeline specification, see [Pipeline Specification docs](https://docs.pachyderm.com/latest/reference/pipeline_spec/).
-- The *frames* pipeline was tested using videos in MKV, mp4, and MOV format.
-- The *frames* extracts frames based on a video's encoded frame rate, and each frame is saved as a JPEG.
+- The **frames** pipeline was tested using videos in MKV, mp4, and MOV format.
+- The **frames** extracts frames based on a video's encoded frame rate, and each frame is saved as a JPEG.
