@@ -12,7 +12,7 @@ A local installation of Pachyderm runs on minikube, which is a local Kubernetes 
 # 1) Gather Videos of Interest
 For the purposes of testing this pipeline, collect a few short (less than 5 minutes in length) videos you would like to convert to frames.
 
-> By default, the minikube cluster has a limited amount of memory (4000MB) and disk (20000MB) resources, so too many videos or videos that are too long can cause the cluster to fail. See the *TLS handshake timeout* section of the Troubleshooting document.
+> By default, the minikube cluster has a limited amount of memory (4000MB) and disk (20000MB) resources, so too many videos or videos that are too long can cause the cluster to fail. See the [TLS handshake timeout](https://github.com/lfierro/pachyderm-vid2frames-demo/blob/master/tutorial/troubleshooting.md#tls-handshake-timeout) section of the Troubleshooting document.
 
 Public domain archives, such as the [Internet Archive](https://archive.org), are good sources for test videos.
 
