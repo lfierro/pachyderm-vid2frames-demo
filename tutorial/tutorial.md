@@ -124,7 +124,14 @@ minikube delete
 ```
 
 # Appendix
+
+## General information
 - The **frames** pipeline was tested using videos in MKV, mp4, and MOV format.
 - The **frames** pipeline extracts frames based on a video's encoded frame rate, and each frame is saved as a JPEG.
 - For more on the pipeline specification, see Pachyderm's [Pipeline Specification docs](https://docs.pachyderm.com/latest/reference/pipeline_spec/).
 - This tutorial was created and run using macOS High Sierra.
+
+## Docker image
+This tutorial uses the version-tagged Docker image that is publicly available on [Docker Hub](https://hub.docker.com/layers/lfierro/pachyderm-vid2frames-demo/version-1.1/images/sha256-fdd94ff119db75baaeb0a45813b46f3e4f505631417811e38f6710fc17b93ad7?context=explore).
+
+If you would like to use your own Docker image, you'll need to replace the value of the `image` property in the transform step of the pipeline specification, `frame-extract.json`. 
