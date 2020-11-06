@@ -21,7 +21,7 @@ If the pipeline job fails, run:
 pachctl logs --job=JOB_ID
 ```
 
-With the JOBID pulled from:
+With the JOB_ID pulled from:
 ```
 pachctl list job
 ```
@@ -52,4 +52,4 @@ You can then add the updated file to the **videos** repo.
 pachctl put file videos@master -f UPDATED_VIDEO_FILENAME
 ```
 
-And, the **frames** pipeline should immediately begin to process the updated video file.
+The **frames** pipeline should immediately begin to process the updated video file.

@@ -9,7 +9,7 @@ To do so, follow the instructions for a [Local Installation of Pachyderm](https:
 ### Versions used
 A local installation of Pachyderm runs on minikube, which is a local Kubernetes cluster. This tutorial uses **minikube v1.14.2** and **Pachyderm v1.11.5**.
 
-# Gather Videos of Interest
+# 1) Gather Videos of Interest
 For the purposes of testing this pipeline, collect a few short (less than 5 minutes in length) videos you would like to convert to frames.
 
 > By default, the minikube cluster has a limited amount of memory (4000MB) and disk (20000MB) resources, so too many videos or videos that are too long can cause the cluster to fail. See the *TLS handshake timeout* section of the Troubleshooting document.
@@ -19,10 +19,10 @@ Public domain archives, such as the [Internet Archive](https://archive.org), are
 **Recommendations**:
 1. Place all of the videos in a single folder for easy access.
 2. Name the video files in a command-line friendly way because all of the frames of a video will be extracted and saved to a folder named after the video filename.
-  - For example: Use the filename `sample_newsclip_20201103.mp3` rather than `Sample Newsclip 20201103.mp3` because a directory named `sample_newsclip_2020_11_03` is cleaner and doesn't require spaces to be escaped when trying to access it from the command line.
-  - For more details on file naming practices, see [here](https://library.stanford.edu/research/data-management-services/data-best-practices/best-practices-file-naming).
+    - For example: Use the filename `sample_newsclip_20201103.mp3` rather than `Sample Newsclip 20201103.mp3` because a directory named `sample_newsclip_2020_11_03` is cleaner and doesn't require spaces to be escaped when trying to access it from the command-line.
+    - For more details on file naming practices, see [here](https://library.stanford.edu/research/data-management-services/data-best-practices/best-practices-file-naming).
 
-# Start Up Pachyderm (if not started already)
+# 2) Start Up Pachyderm (if not started already)
 Start Minikube:
 ```
 minikube start
@@ -32,7 +32,7 @@ Start Pachyderm:
 pachctl deploy local
 ```
 
-# Create videos repo
+# 3) Create videos repo
 Once Pachyderm is running (may take a few minutes), create the **videos** repo, which will contain all of the videos you'd like to process.
 ```
 pachctl create repo videos
@@ -45,7 +45,7 @@ pachctl list repo
 
 > Be sure to name the **videos** repo exactly as such because the pipeline expects it as an input.
 
-# Add video files to the videos repo
+# 4) Add video files to the videos repo
 With all of your videos stored on a local folder, you can add all of them to the **videos** repo by running:
 ```
 pachctl put file -r videos@master:/ -f PATH_TO_VIDEOS_LOCAL_FOLDER
@@ -60,8 +60,8 @@ Verify that all videos of interest have been added.
 pachctl list file videos@master
 ```
 
-# Create frames pipeline
-Now that you have the videos to be processed checked into the **videos** repo, you can create the **frames** pipeline using the pipeline specification `frame-extract.json` defined in this GitHub repository.
+# 5) Create frames pipeline
+Now that you have the videos to be processed checked into the **videos** repo, you can create the **frames** pipeline using the specification `frame-extract.json` defined in this GitHub repository.
 ```
 pachctl create pipeline -f https://raw.githubusercontent.com/lfierro/pachyderm-vid2frames-demo/master/frame-extract.json
 ```
@@ -73,7 +73,9 @@ pachctl list job
 
 > Note: It may take a few minutes for the job to appear.
 
-# Check pipeline output
+# 6) Check pipeline output
+
+## Listing Files
 Once the job is completed, a new repo should be created called **frames** (which was named in the pipeline specification `frame-extract.json`). In it, should be a directory for each video.
 
 You can check all of the files committed to the **frames** repo by first seeing all of the directories created.
@@ -81,11 +83,12 @@ You can check all of the files committed to the **frames** repo by first seeing 
 pachctl list file frames@master
 ```
 
-Then, you can list all of the frames in a directory. There will be many, so you may only want to see a preview of that list by piping the command to head.
+Then, you can list all of the frames in a directory. There will be many, so you may only want to see a preview of that list by piping the list command output to head.
 ```
 pachctl list file frames@master:/SINGLE_VIDEO_DIRECTORY | head
 ```
 
+## Viewing Frames
 Now, you can view one of the frames. The command differs based on your operating system.
 
 macOS before Catalina:
@@ -103,15 +106,14 @@ Linux 64-bit:
 pachctl get file frames@master:/SINGLE_VIDEO_DIRECTORY/frame0.jpg | display
 ```
 
-# Optional: Saving/exporting frames locally
-If you would like to download the extracted frames, run:
+# 7) Optional: Saving/exporting frames locally
+Now that all of the videos have been processed, if you would like to download the extracted frames, run:
 ```
 pachctl get file frames@master:/ -ro LOCAL_PATH_TO_SAVE
 ```
-This command will download all of the directories and files inside of the **frames** repo.
 
-# Shutting down
-Once everything is completed, if you'd like to shut down Pachyderm. Simply run:
+# 8) Shutting down
+Once you're ready to shut down Pachyderm. Simply run:
 ```
 minikube delete
 ```
