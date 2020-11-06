@@ -107,7 +107,7 @@ pachctl get file frames@master:/SINGLE_VIDEO_DIRECTORY/frame0.jpg | display
 ```
 
 # 7) Optional: Saving/exporting frames locally
-Now that all of the videos have been processed, if you would like to download the extracted frames, run:
+If you would like to download all of the extracted frames in the **frames** repo, run:
 ```
 pachctl get file frames@master:/ -ro LOCAL_PATH_TO_SAVE
 ```
