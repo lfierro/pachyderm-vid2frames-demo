@@ -7,6 +7,6 @@ This repository contains materials to run a Pachyderm pipeline that extracts fra
   - includes the building of libraries needed for video processing with OpenCV v4.4.0
 - The tutorial folder contains:
   - **tutorial.md**: a walkthrough of how to use and run the files above
-  - **troubleshooting.md**: addresses some issues that may emerge and recommended fixes
+  - **troubleshooting.md**: addresses some issues that may emerge and recommends fixes
 
 In order to run the pipeline, it isn't necessary to download the code from this repository, but you are welcome to clone and fork as needed!
