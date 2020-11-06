@@ -1,5 +1,5 @@
 # Overview
-This repository contains materials to run a Pachyderm pipeline that extracts frames from a video and saves them as stills.
+This repository contains materials to run a Pachyderm pipeline that extracts frames from a video or small video collection and saves them as stills.
 
 - **frame-extract.py**: Python script that executes the video to image extraction
 - **frame-extract.json**: Pipeline specification to run video to image extraction using a Pachyderm pipeline job
