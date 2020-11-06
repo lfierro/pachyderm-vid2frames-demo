@@ -19,7 +19,7 @@ Public domain archives, such as the [Internet Archive](https://archive.org), are
 **Recommendations**:
 1. Place all of the videos in a single directory for easy access.
 2. Name the video files in a command-line friendly way because all of the frames of a video will be extracted and saved to a directory named after the video filename.
-    - For example: Use the filename `sample_newsclip_20201103.mp3` rather than `Sample Newsclip 20201103.mp3` because a directory named `sample_newsclip_2020_11_03` is cleaner and doesn't require spaces to be escaped when trying to access it from the command-line.
+    - For example: Use the filename `sample_newsclip_20201103.mp3` rather than `Sample Newsclip 20201103.mp3` because a directory named `sample_newsclip_20201103` is cleaner and doesn't require spaces to be escaped when trying to access it from the command-line.
     - For more details on file naming practices, see [here](https://library.stanford.edu/research/data-management-services/data-best-practices/best-practices-file-naming).
 
 # 2) Start Up Pachyderm (if not started already)
@@ -33,7 +33,7 @@ pachctl deploy local
 ```
 
 # 3) Create videos repo
-Once Pachyderm is running (may take a few minutes), create the **videos** repo, which will contain all of the videos you'd like to process.
+Once Pachyderm is running (may take a few minutes), create the **videos** repo, which will eventually contain all of the videos you'd like to process.
 ```
 pachctl create repo videos
 ```
@@ -88,7 +88,7 @@ You can check all of the files committed to the **frames** repo by first seeing 
 pachctl list file frames@master
 ```
 
-Then, you can list all of the frames in a directory. There will be many, so you may only want to see a preview of that list by piping the list command output to head.
+Then, you can list all of the frames in a directory. There will be many, so you may only want to see a preview by piping the list command output to head.
 ```
 pachctl list file frames@master:/SINGLE_VIDEO_DIRECTORY | head
 ```
@@ -118,7 +118,7 @@ pachctl get file frames@master:/ -ro LOCAL_PATH_TO_SAVE
 ```
 
 # 8) Shutting down
-Once you're ready to shut down Pachyderm. Simply run:
+Once you're ready to shut down Pachyderm and your minikube cluster, simply run:
 ```
 minikube delete
 ```
@@ -134,4 +134,4 @@ minikube delete
 ## Docker image
 This tutorial uses the version-tagged Docker image that is publicly available on [Docker Hub](https://hub.docker.com/layers/lfierro/pachyderm-vid2frames-demo/version-1.1/images/sha256-fdd94ff119db75baaeb0a45813b46f3e4f505631417811e38f6710fc17b93ad7?context=explore).
 
-If you would like to use your own Docker image, you'll need to replace the value of the `image` property in the `transform` step of the pipeline specification, `frame-extract.json`. 
+If you would like to use your own Docker image, you'll need to replace the value of the `image` property in the `transform` step of the pipeline specification, `frame-extract.json`.
