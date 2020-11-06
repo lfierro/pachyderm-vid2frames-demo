@@ -26,7 +26,7 @@ With the JOB_ID pulled from:
 pachctl list job
 ```
 
-# Video file produces an empty folder in the frames repo
+# Video file produces an empty directory in the frames repo
 This means that the video format was not readable by OpenCV. You can verify by running:
 ```
 pachctl list job
@@ -42,7 +42,7 @@ You should see the message, `Video VIDEO_FILENAME could not be read. Please chec
 ## Solution
 Update the format of the video file. mp4, MKV, and MOV have historically worked well.
 
-Then, delete the old file from the **videos** repo and its corresponding folder in the **frames** repo by running:
+Then, delete the old file from the **videos** repo and its corresponding directory in the **frames** repo by running:
 ```
 pachctl delete file videos@master:/FAILED_VIDEO_FILENAME
 ```

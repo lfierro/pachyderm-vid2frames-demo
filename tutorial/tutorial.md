@@ -1,5 +1,5 @@
 # Getting Started
-This tutorial will show you how to create and run a Pachyderm pipeline that extracts and saves all frames from a video or collection of videos.
+This tutorial will show you how to create and run a Pachyderm pipeline that extracts and saves all frames from a video or a small collection of videos.
 
 ## Prerequisites
 The **frames** pipeline was created and tested for a local installation of Pachyderm, and thus, it is recommended to use a local installation to run it.
@@ -17,8 +17,8 @@ For the purposes of testing this pipeline, collect a few short (less than 5 minu
 Public domain archives, such as the [Internet Archive](https://archive.org), are good sources for test videos.
 
 **Recommendations**:
-1. Place all of the videos in a single folder for easy access.
-2. Name the video files in a command-line friendly way because all of the frames of a video will be extracted and saved to a folder named after the video filename.
+1. Place all of the videos in a single directory for easy access.
+2. Name the video files in a command-line friendly way because all of the frames of a video will be extracted and saved to a directory named after the video filename.
     - For example: Use the filename `sample_newsclip_20201103.mp3` rather than `Sample Newsclip 20201103.mp3` because a directory named `sample_newsclip_2020_11_03` is cleaner and doesn't require spaces to be escaped when trying to access it from the command-line.
     - For more details on file naming practices, see [here](https://library.stanford.edu/research/data-management-services/data-best-practices/best-practices-file-naming).
 
@@ -46,12 +46,17 @@ pachctl list repo
 > Be sure to name the **videos** repo exactly as such because the pipeline expects it as an input.
 
 # 4) Add video files to the videos repo
-With all of your videos stored on a local folder, you can add all of them to the **videos** repo by running:
+With all of your videos stored on a local directory, you can add all of them to the **videos** repo by running:
 ```
-pachctl put file -r videos@master:/ -f PATH_TO_VIDEOS_LOCAL_FOLDER
+pachctl put file -r videos@master:/ -f PATH_TO_VIDEOS_LOCAL_DIRECTORY
 ```
 
-> If videos are stored in a different way, run
+Otherwise, if you only have one video, or you want to add videos individually, you can do so by navigating to the directory of a video and running:
+```
+pachctl put file videos@master -f VIDEO_FILENAME
+```
+
+> You can also run:
 > ```pachctl put file videos@master -h```
 > in order to see different ways to add video files to the repo.
 
